@@ -1,4 +1,4 @@
-package chapter2;
+package camelinaction.chapter2;
 
 import org.apache.activemq.ActiveMQConnectionFactory;
 import org.apache.camel.CamelContext;

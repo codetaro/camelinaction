@@ -1,4 +1,4 @@
-package chapter1;
+package camelinaction.chapter1;
 
 import org.apache.camel.CamelContext;
 import org.apache.camel.builder.RouteBuilder;

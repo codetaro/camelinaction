@@ -1,4 +1,4 @@
-package chapter2;
+package camelinaction.chapter2;
 
 import org.apache.camel.RecipientList;
 import org.apache.camel.language.XPath;

@@ -34,5 +34,41 @@
             <artifactId>activemq-core</artifactId>
             <version>${activemq-version}</version>
         </dependency>
+        <dependency>
+            <groupId>org.apache.camel</groupId>
+            <artifactId>camel-spring</artifactId>
+            <version>${camel-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.camel</groupId>
+            <artifactId>camel-test</artifactId>
+            <version>${camel-version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- when using JAXB data format -->
+        <dependency>
+            <groupId>org.apache.camel</groupId>
+            <artifactId>camel-jaxb</artifactId>
+            <version>${camel-version}</version>
+        </dependency>
+        <!-- when using CSV data format -->
+        <dependency>
+            <groupId>org.apache.camel</groupId>
+            <artifactId>camel-csv</artifactId>
+            <version>${camel-version}</version>
+        </dependency>
+        <!-- when using Bindy data format -->
+        <dependency>
+            <groupId>org.apache.camel</groupId>
+            <artifactId>camel-bindy</artifactId>
+            <version>${camel-version}</version>
+        </dependency>
+        <!-- when using Velocity templating -->
+        <dependency>
+            <groupId>org.apache.camel</groupId>
+            <artifactId>camel-velocity</artifactId>
+            <version>${camel-version}</version>
+        </dependency>
     </dependencies>
 </project>
