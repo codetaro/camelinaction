@@ -8,7 +8,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class PurchaseOrderJaxbTest extends CamelSpringTestSupport {
     protected AbstractXmlApplicationContext createApplicationContext() {
-        return new ClassPathXmlApplicationContext("chapter3/order-jaxb.xml");
+        return new ClassPathXmlApplicationContext("camelinaction/chapter3/order-jaxb.xml");
     }
 
     @Test
