@@ -31,7 +31,7 @@ public class XmlOrderTest extends CamelSpringTestSupport {
         Document xml = context.getTypeConverter().convertTo(Document.class, body);
 
         // store the order as a file which is picked up by the route
-        template.sendBodyAndHeader("file://data/order", xml, Exchange.FILE_NAME, "order.xml");
+        template.sendBodyAndHeader("file://data/orders", xml, Exchange.FILE_NAME, "order.xml");
 
         mock.assertIsSatisfied();
     }

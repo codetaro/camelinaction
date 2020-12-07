@@ -14,7 +14,7 @@
     <!-- route a message from the file to the xmlOrderService bean -->
     <camelContext id="camel" xmlns="http://camel.apache.org/schema/spring">
         <route>
-            <from uri="file://data/order"/>
+            <from uri="file://data/orders"/>
             <to uri="log:before"/>
             <bean ref="xmlOrderService"/>
             <to uri="log:after"/>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd">
+
+    <bean id="orderService" class="camelinaction.chapter5.OrderService"/>
+
+    <camelContext id="camel" errorHandlerRef="defaultEH" xmlns="http://camel.apache.org/schema/spring">
+
+        <errorHandler id="defaultEH">
+            <redeliveryPolicy maximumRedeliveries="2" retryAttemptedLogLevel="WARN" redeliveryDelay="1000"/>
+        </errorHandler>
+
+        <errorHandler id="dlc" type="DeadLetterChannel" deadLetterUri="log:DLC">
+            <redeliveryPolicy maximumRedeliveries="5" retryAttemptedLogLevel="INFO" redeliveryDelay="250"
+                              backOffMultiplier="2" useExponentialBackOff="true"/>
+        </errorHandler>
+
+        <route>
+            <from uri="file://data/orders?delay=10000"/>
+            <bean ref="orderService" method="toCsv"/>
+            <to uri="mock:file"/>
+            <to uri="seda:queue.inbox"/>
+        </route>
+
+        <route errorHandlerRef="dlc">
+            <from uri="seda:queue.inbox"/>
+            <bean ref="orderService" method="validate"/>
+            <bean ref="orderService" method="enrich"/>
+            <to uri="mock:queue.order"/>
+        </route>
+
+    </camelContext>
+</beans>
