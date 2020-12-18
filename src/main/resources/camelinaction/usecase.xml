@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:spring="http://camel.apache.org/schema/spring"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd">
+
+    <context:property-placeholder location="classpath:usecase.properties"/>
+
+    <bean id="route" class="camelinaction.UseCaseRoute"/>
+
+    <spring:camelContext id="camel">
+        <spring:routeBuilder ref="route"/>
+
+        <spring:endpoint id="fileEndpoint" uri="file:${file.dir}?delay=5000&amp;readLock=none"/>
+        <spring:endpoint id="httpEndpoint" uri="http://${http.host}:${http.port}/rider"/>
+        <spring:endpoint id="ftpEndpoint" uri="${ftp.url}"/>
+    </spring:camelContext>
+
+</beans>
