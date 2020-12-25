@@ -28,11 +28,11 @@ public class SimulateErrorUsingProcessorTest extends CamelTestSupport {
 
                 from("direct:file")
                         // simulate an error using a processor to throw the exception
-//                        .process(new Processor() {
-//                            public void process(Exchange exchange) throws Exception {
-//                                throw new ConnectException("Simulated connection error");
-//                            }
-//                        })
+                        .process(new Processor() {
+                            public void process(Exchange exchange) throws Exception {
+                                throw new ConnectException("Simulated connection error");
+                            }
+                        })
                         .to("mock:http");
             }
         };

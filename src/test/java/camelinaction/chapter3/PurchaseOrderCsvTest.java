@@ -9,6 +9,21 @@ import java.util.List;
 
 public class PurchaseOrderCsvTest extends CamelTestSupport {
 
+    @Override
+    protected RouteBuilder createRouteBuilder() throws Exception {
+        return new RouteBuilder() {
+            @Override
+            public void configure() throws Exception {
+                context.setTracing(true);
+
+                from("file://src/test/resources/camelinaction/chapter3?noop=true&fileName=order.csv")
+                        .unmarshal().csv()
+                        .split(body())
+                        .to("mock:queue.csv");
+            }
+        };
+    }
+
     @Test
     public void testCsv() throws Exception {
         MockEndpoint mock = getMockEndpoint("mock:queue.csv");
@@ -25,20 +40,5 @@ public class PurchaseOrderCsvTest extends CamelTestSupport {
         assertEquals("Activemq in Action", line2.get(0));
         assertEquals("4495", line2.get(1));
         assertEquals("2", line2.get(2));
-    }
-
-    @Override
-    protected RouteBuilder createRouteBuilder() throws Exception {
-        return new RouteBuilder() {
-            @Override
-            public void configure() throws Exception {
-                context.setTracing(true);
-
-                from("file://src/test/resources/camelinaction.chapter3?noop=true&fileName=order.csv")
-                        .unmarshal().csv()
-                        .split(body())
-                        .to("mock:queue.csv");
-            }
-        };
     }
 }

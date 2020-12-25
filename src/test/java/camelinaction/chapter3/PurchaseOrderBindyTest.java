@@ -7,6 +7,7 @@ import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.component.mock.MockEndpoint;
 import org.apache.camel.impl.DefaultCamelContext;
 import org.apache.camel.model.dataformat.BindyType;
+import org.junit.Test;
 
 import java.math.BigDecimal;
 
@@ -17,12 +18,13 @@ public class PurchaseOrderBindyTest extends TestCase {
             @Override
             public void configure() throws Exception {
                 from("direct:toCsv")
-                        .marshal().bindy(BindyType.Csv, "chapter3")
+                        .marshal().bindy(BindyType.Csv, PurchaseOrderCsv.class)
                         .to("mock:result");
             }
         };
     }
 
+    @Test
     public void testBindy() throws Exception {
         CamelContext context = new DefaultCamelContext();
         context.addRoutes(createRoute());

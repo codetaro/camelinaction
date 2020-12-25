@@ -1,10 +1,9 @@
 package camelinaction.chapter6;
 
-import com.sun.tools.corba.se.idl.constExpr.Or;
 import org.apache.camel.Exchange;
 import org.apache.camel.builder.NotifyBuilder;
 import org.apache.camel.spi.BrowsableEndpoint;
-import org.apache.camel.test.CamelSpringTestSupport;
+import org.apache.camel.test.spring.CamelSpringTestSupport;
 import org.junit.Test;
 import org.springframework.context.support.AbstractXmlApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;

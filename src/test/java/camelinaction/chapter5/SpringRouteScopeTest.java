@@ -5,8 +5,7 @@ import org.apache.camel.LoggingLevel;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.component.mock.MockEndpoint;
 import org.apache.camel.impl.JndiRegistry;
-import org.apache.camel.test.CamelSpringTestSupport;
-import org.apache.camel.test.CamelTestSupport;
+import org.apache.camel.test.spring.CamelSpringTestSupport;
 import org.junit.Test;
 import org.springframework.context.support.AbstractXmlApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -14,7 +13,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class SpringRouteScopeTest extends CamelSpringTestSupport {
 
     @Override
-    protected void setUp() throws Exception {
+    public void setUp() throws Exception {
         deleteDirectory("data/orders");
         super.setUp();
     }
