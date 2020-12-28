@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:spring="http://camel.apache.org/schema/spring"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd">
+
+    <bean id="myAggregationStrategy" class="camelinaction.chapter8.aggregator.MyAggregationStrategy"/>
+
+    <bean id="myRepo" class="org.apache.camel.component.hawtdb.HawtDBAggregationRepository">
+        <property name="repositoryName" value="myrepo"/>
+        <property name="persistentFileName" value="data/myrepo.dat"/>
+    </bean>
+
+    <spring:camelContext>
+        <spring:route>
+            <spring:from uri="file://data/inbox"/>
+            <spring:log message="Consuming ${file:name}"/>
+            <spring:convertBodyTo type="java.lang.String"/>
+            <spring:aggregate strategyRef="myAggregationStrategy" completionSize="3"
+                              aggregationRepositoryRef="myRepo">
+                <spring:correlationExpression>
+                    <spring:constant>true</spring:constant>
+                </spring:correlationExpression>
+                <spring:log message="Sending out ${body}"/>
+                <spring:to uri="mock:result"/>
+            </spring:aggregate>
+        </spring:route>
+    </spring:camelContext>
+</beans>

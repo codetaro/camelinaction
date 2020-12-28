@@ -47,6 +47,14 @@
             <groupId>org.apache.activemq</groupId>
             <artifactId>activemq-all</artifactId>
             <version>${activemq-version}</version>
+<!--
+            <exclusions>
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-log4j12</artifactId>
+                </exclusion>
+            </exclusions>
+-->
         </dependency>
         <dependency>
             <groupId>org.apache.activemq</groupId>
@@ -148,11 +156,13 @@
             <artifactId>slf4j-api</artifactId>
             <version>${slf4j-version}</version>
         </dependency>
+<!--
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-log4j12</artifactId>
             <version>${slf4j-version}</version>
         </dependency>
+-->
 
         <!-- Database -->
         <dependency>
@@ -191,6 +201,13 @@
         <dependency>
             <groupId>org.apache.camel</groupId>
             <artifactId>camel-quartz</artifactId>
+            <version>${camel-version}</version>
+        </dependency>
+
+        <!--  -->
+        <dependency>
+            <groupId>org.apache.camel</groupId>
+            <artifactId>camel-hawtdb</artifactId>
             <version>${camel-version}</version>
         </dependency>
     </dependencies>
@@ -243,8 +260,16 @@
                 <version>3.0.0-M2</version>
                 <configuration>
                     <rules>
-                        <DependencyConvergence></DependencyConvergence>
+                        <DependencyConvergence/>
                     </rules>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>7</source>
+                    <target>7</target>
                 </configuration>
             </plugin>
         </plugins>
