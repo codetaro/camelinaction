@@ -17,9 +17,37 @@
         <spring-version>4.1.7.RELEASE</spring-version>
         <slf4j-version>1.7.5</slf4j-version>
         <xbean-version>3.18</xbean-version>
+        <atomikos-version>3.8.0</atomikos-version>
     </properties>
 
     <dependencies>
+        <!-- Atomikos -->
+        <dependency>
+            <groupId>com.atomikos</groupId>
+            <artifactId>transactions</artifactId>
+            <version>${atomikos-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.atomikos</groupId>
+            <artifactId>transactions-jta</artifactId>
+            <version>${atomikos-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.atomikos</groupId>
+            <artifactId>transactions-jms</artifactId>
+            <version>${atomikos-version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>javax.jms</groupId>
+                    <artifactId>jms</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>com.atomikos</groupId>
+            <artifactId>transactions-jdbc</artifactId>
+            <version>${atomikos-version}</version>
+        </dependency>
 
         <!-- Networking -->
         <dependency>
