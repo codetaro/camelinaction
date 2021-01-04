@@ -240,6 +240,17 @@
         </dependency>
     </dependencies>
 
+<!--
+    <profiles>
+        <profile>
+            <id>CreateBigFile</id>
+            <properties>
+                <target.main.class>camelinaction.chapter10.CreateBigFileMain</target.main.class>
+            </properties>
+        </profile>
+    </profiles>
+-->
+
     <build>
         <plugins>
             <!-- Allows the routes to be run via 'mvn camel:run' -->
