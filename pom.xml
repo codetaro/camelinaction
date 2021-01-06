@@ -89,11 +89,14 @@
             <artifactId>activemq-camel</artifactId>
             <version>${activemq-version}</version>
         </dependency>
+
+        <!-- using JMX with Camel -->
         <dependency>
             <groupId>org.apache.camel</groupId>
             <artifactId>camel-spring</artifactId>
             <version>${camel-version}</version>
         </dependency>
+
         <dependency>
             <groupId>org.apache.camel</groupId>
             <artifactId>camel-http</artifactId>
@@ -238,6 +241,30 @@
             <artifactId>camel-hawtdb</artifactId>
             <version>${camel-version}</version>
         </dependency>
+
+        <!-- using JMX with Camel -->
+<!--
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-core</artifactId>
+            <version>${spring-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-beans</artifactId>
+            <version>${spring-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>${spring-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-aop</artifactId>
+            <version>${spring-version}</version>
+        </dependency>
+-->
     </dependencies>
 
 <!--
